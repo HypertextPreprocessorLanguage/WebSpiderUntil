@@ -5,8 +5,6 @@ require_once __DIR__ . '/Base.php';
 
 class MultiProgress
 {
-//$running
-    private static $running;
 
     public static function multiScrape($nodes, $header): array
     {
@@ -16,12 +14,15 @@ class MultiProgress
 
         $ch = curl_init();
         $mh = curl_multi_init();
+
         $curlArray = array();
+
         foreach ($nodes as $key => $info) {
             if (is_array($info) === false || isset($info['url']) === false) {
                 continue;
             }
             $url = $info['url'];
+
             curl_setopt($ch, CURLOPT_URL, $url) && curl_setopt_array($ch, $header);
 
             $data = $info['data'] ?? null;
@@ -37,12 +38,12 @@ class MultiProgress
             curl_multi_add_handle($mh, $curlArray[$key]);
         }
 
-//        $running = NULL;
+        $running = NULL;
 
         do {
-//            usleep(10000);
-            curl_multi_exec($mh, self::$running);
-        } while (self::$running > 0);
+            usleep(rand(0, 10) ** 5);
+            curl_multi_exec($mh, $running);
+        } while ($running > 0);
 
         $res = array();
         foreach ($nodes as $key => $info) {
