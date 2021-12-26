@@ -4487,13 +4487,6 @@ pip-log.txt
 
 # Common configure file
 /Application/Common/Conf/config.php
-### Example user template template
-### Example user template
-
-# IntelliJ project files
-.idea
-*.iml
-gen
 ### Typo3 template
 ## TYPO3 v6.2
 # Ignore several upload and file directories.
@@ -4868,6 +4861,7 @@ proguard/
 captures/
 
 # IntelliJ
+*.iml
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
