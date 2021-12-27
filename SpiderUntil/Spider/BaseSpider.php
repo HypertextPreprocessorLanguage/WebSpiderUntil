@@ -58,7 +58,6 @@ class BaseSpider
         return $response;
     }
 
-
     /**
      * @param string $method
      * @param array $task
